@@ -9,7 +9,7 @@ type JobPageProps = {
 };
 
 const JobPage = ({ deleteJob }: JobPageProps) => {
-  const job = useLoaderData<Job>();
+  const job = useLoaderData() as Job;
 
   const navigate = useNavigate();
 
@@ -114,7 +114,7 @@ const JobPage = ({ deleteJob }: JobPageProps) => {
   );
 };
 
-const jobLoader = async ({ params }: LoaderFunctionArgs) => {
+const jobLoader = async ({ params }: LoaderFunctionArgs): Promise<Job> => {
   const res = await fetch(`/api/jobs/${params.id}`);
   const data = await res.json();
   return data;
